@@ -81,7 +81,6 @@ module "user_data" {
   source = "./modules/user-data"
 
   count = 4
-  bastion_private_key = var.BASTION_PRIV_KEY
   node_name = "node${count.index}"
   controller_dns =  module.bastion_instance.instance_dns_name
 

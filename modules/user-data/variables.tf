@@ -1,9 +1,3 @@
-variable "bastion_private_key" {
-  default = ""
-  type = string
-  description = "The private key for bastion user to authenticate to Polygon Nodes."
-}
-
 variable "polygon_edge_dir" {
   default = "/home/ubuntu/polygon"
   type = string
