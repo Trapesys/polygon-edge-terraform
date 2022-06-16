@@ -121,6 +121,24 @@ fi
 
 chown -R "$LINUX_USER". $POLYGON_FOLDER
 
+# Handle log rotation
+cat << EOF > /etc/logrotate.d/polygon-edge
+$LOGS_FOLDER/*.log
+{
+        rotate 14
+        daily
+        missingok
+        notifempty
+        compress
+        prerotate
+                /usr/bin/systemctl stop polygon-edge.service
+        endscript
+        postrotate
+                /usr/bin/systemctl start polygon-edge.service
+        endscript
+}
+EOF
+
 echo "ALL DONE!" >> $LOG_FILE
 echo "-------- Finished on: $(date)  ----------" >> $LOG_FILE
 exit 0

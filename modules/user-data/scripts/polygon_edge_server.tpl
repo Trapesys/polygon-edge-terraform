@@ -44,7 +44,6 @@ RestartSec=10
 User=ubuntu
 StandardOutput=syslog
 StandardError=file:$LOG_FILE
-ExecStartPre=/bin/bash -c "sudo rm $LOG_FILE"
 ExecStart=/usr/local/bin/polygon-edge server --data-dir $DATA_DIR --chain $GENESIS_FILE --libp2p 0.0.0.0:1478 --grpc-address 0.0.0.0:9632 --secrets-config $SECRETS_FILE --seal SERVER_OPTIONS
 
 [Install]
